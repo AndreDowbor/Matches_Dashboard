@@ -92,20 +92,13 @@
     let filteredData = [];
 
     async function loadData() {
-      const res = await fetch("http://127.0.0.1:5000/data");
+      const res = await fetch("data.json");
       allData = await res.json();
       filteredData = [...allData];
       renderTable(filteredData);
       populateActionFilter(allData);
     }
 
-    async function saveRecord(updatedRow) {
-      await fetch("http://127.0.0.1:5000/update", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedRow)
-      });
-    }
 
     function renderTable(data) {
       const tbody = document.querySelector("#data-table-body");
